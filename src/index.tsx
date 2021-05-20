@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+import { hot } from 'react-hot-loader/root'
+import { StoreContext } from 'storeon/react'
 
-ReactDOM.render(
+import { store } from 'store'
+import { routes } from 'routes'
+import 'styles/main.css'
+
+const Root = hot(() => renderRoutes(routes))
+
+render(
   <React.StrictMode>
-    <App />
+    <StoreContext.Provider value={store}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Root />
+      </BrowserRouter>
+    </StoreContext.Provider>
   </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  document.getElementById('app'),
+)
