@@ -4,7 +4,7 @@ import { DataTable } from 'components/tables'
 import { getTasks } from 'api'
 import * as paths from 'utils/paths'
 import { useHistory, Link } from 'react-router-dom'
-import { UserAddOutlined } from '@ant-design/icons'
+import { FileAddOutlined, UserAddOutlined } from '@ant-design/icons'
 import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
 
@@ -42,7 +42,7 @@ export const TasksPage = () => {
         <StyledTitle
           title="Задачи"
           createButtonContent={
-            <Link to={paths.taskCreatePath}>{<UserAddOutlined />} Создать</Link>
+            <Link to={paths.taskCreatePath}>{<FileAddOutlined />} Создать</Link>
           }
         />
       }

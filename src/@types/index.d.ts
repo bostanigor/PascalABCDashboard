@@ -18,6 +18,14 @@ type Task = {
   rating: number
 }
 
+type Solution = {
+  id: number
+  is_successfull: boolean
+  task: Task
+  student: Student
+  created_at: Date
+}
+
 type IndexPageMeta = {
   current_page: number
   next_page: number

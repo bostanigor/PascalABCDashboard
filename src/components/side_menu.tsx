@@ -9,6 +9,9 @@ import {
   ShopOutlined,
   QuestionOutlined,
   PoundOutlined,
+  FileDoneOutlined,
+  FolderFilled,
+  FolderOutlined,
 } from '@ant-design/icons'
 
 const useMenuKeys = () => {
@@ -29,13 +32,13 @@ const useMenuKeys = () => {
 export const SideMenu: React.FC<{}> = () => {
   return (
     <Menu theme="dark" mode="inline" selectedKeys={useMenuKeys()}>
-      <Menu.Item key={studentsPath} icon={<ShoppingOutlined />}>
+      <Menu.Item key={studentsPath} icon={<UserOutlined />}>
         <Link to={studentsPath}>Студенты</Link>
       </Menu.Item>
-      <Menu.Item key={groupsPath} icon={<ShoppingOutlined />}>
+      <Menu.Item key={groupsPath} icon={<FolderOutlined />}>
         <Link to={groupsPath}>Группы</Link>
       </Menu.Item>
-      <Menu.Item key={tasksPath} icon={<ShoppingOutlined />}>
+      <Menu.Item key={tasksPath} icon={<FileDoneOutlined />}>
         <Link to={tasksPath}>Задачи</Link>
       </Menu.Item>
     </Menu>

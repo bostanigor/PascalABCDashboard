@@ -82,9 +82,9 @@ export const signIn = (email: string, password: string) =>
 
 // Student requests
 export const getStudents = (
-  page: string,
-  pageSize: string,
-  filterParams: StudentFilterParams,
+  page?: string,
+  pageSize?: string,
+  filterParams?: StudentFilterParams,
 ) =>
   instance
     .get('/students', {
@@ -159,6 +159,23 @@ export const updateTask = (id: string, params: { task: TaskCreateParams }) =>
     .then((res) => res.data as ApiResponse<Task>)
 
 export const deleteTask = (id: string) => instance.delete(`/tasks/${id}`)
+
+export const getSolutions = (
+  page?: string,
+  pageSize?: string,
+  filterParams?: StudentFilterParams,
+) =>
+  instance
+    .get('/solutions', {
+      params: {
+        ...filterParams,
+        page,
+        per_page: pageSize,
+      },
+    })
+    .then((res) => {
+      return res.data as ApiResponse<Solution[], IndexPageMeta>
+    })
 
 /// useFetch hook
 const fetchReducer = <Result, Variables>(

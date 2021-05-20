@@ -4,7 +4,7 @@ import { DataTable } from 'components/tables'
 import { getGroups } from 'api'
 import * as paths from 'utils/paths'
 import { useHistory, Link } from 'react-router-dom'
-import { UserAddOutlined } from '@ant-design/icons'
+import { FolderAddOutlined, UserAddOutlined } from '@ant-design/icons'
 import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
 
@@ -38,7 +38,7 @@ export const GroupsPage = () => {
           title="Группы"
           createButtonContent={
             <Link to={paths.groupCreatePath}>
-              {<UserAddOutlined />} Создать
+              {<FolderAddOutlined />} Создать
             </Link>
           }
         />

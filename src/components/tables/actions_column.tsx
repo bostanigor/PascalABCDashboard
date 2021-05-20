@@ -21,7 +21,7 @@ export const ActionsColumn = ({
             state: { record },
           }}
         >
-          Show
+          Показать
         </Link>
       </Button>
       {editPath && (
@@ -36,7 +36,7 @@ export const ActionsColumn = ({
               state: { record },
             }}
           >
-            Edit
+            Изменить
           </Link>
         </Button>
       )}

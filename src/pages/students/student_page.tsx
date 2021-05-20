@@ -2,10 +2,35 @@ import React from 'react'
 import { Card } from 'antd'
 import { CardEntry, CardHeader } from 'components/cards'
 import { RoleTag } from 'components/role_tag'
-import { useFetch, getStudent, deleteStudent } from 'api'
+import { useFetch, getStudent, deleteStudent, getSolutions } from 'api'
 import { useParams } from 'react-router'
 import { Link, useHistory } from 'react-router-dom'
 import * as paths from 'utils/paths'
+import { DataTable } from 'components/tables'
+import { BooleanIcon } from 'components/boolean_icon'
+
+const solution_columns = [
+  {
+    title: <h1> Задача </h1>,
+    key: 'task',
+    render: (text: string, record: Solution) => (
+      <Link to={paths.taskPath(record.task.id.toString())}>
+        {record.task.name}
+      </Link>
+    ),
+  },
+  {
+    title: <h1> Правильно </h1>,
+    dataIndex: 'is_successfull',
+    key: 'is_successfull',
+    render: (data: boolean) => <BooleanIcon value={data} />,
+  },
+  {
+    title: <h1> Дата </h1>,
+    dataIndex: 'created_at',
+    key: 'created_at',
+  },
+]
 
 export const StudentPage = () => {
   const history = useHistory()
@@ -48,6 +73,11 @@ export const StudentPage = () => {
               {data.data.group.name}
             </Link>
           </CardEntry>
+          <DataTable
+            columns={solution_columns}
+            getMethod={getSolutions}
+            getParams={{ student_id: data.data.id }}
+          />
         </Card>
       )}
     </div>

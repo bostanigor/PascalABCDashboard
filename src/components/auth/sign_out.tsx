@@ -12,7 +12,7 @@ export const SignOut = () => {
   return (
     <Link to={paths.signInPath}>
       <Button onClick={handleLogout}>
-        <LogoutOutlined /> Logout
+        <LogoutOutlined /> Выйти
       </Button>
     </Link>
   )
