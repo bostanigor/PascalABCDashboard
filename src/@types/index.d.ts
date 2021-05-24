@@ -23,7 +23,8 @@ type Solution = {
   is_successfull: boolean
   task: Task
   student: Student
-  created_at: Date
+  attempts_count: number
+  last_attempt_at: Date
 }
 
 type IndexPageMeta = {

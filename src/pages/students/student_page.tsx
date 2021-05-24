@@ -26,9 +26,14 @@ const solution_columns = [
     render: (data: boolean) => <BooleanIcon value={data} />,
   },
   {
-    title: <h1> Дата </h1>,
-    dataIndex: 'created_at',
-    key: 'created_at',
+    title: <h1> Количество попыток </h1>,
+    dataIndex: 'attempts_count',
+    key: 'attempts_count',
+  },
+  {
+    title: <h1> Последняя попытка </h1>,
+    dataIndex: 'last_attempt_at',
+    key: 'last_attempt_at',
   },
 ]
 
