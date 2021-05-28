@@ -79,7 +79,10 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
                 ))}
               </Breadcrumb>
             </Col>
-            <Col flex="0.08">{isSignedIn && <SignOut />}</Col>
+            <Col flex="0.08">{userData?.email}</Col>
+            <Col flex="0.08" offset="1">
+              {isSignedIn && <SignOut />}
+            </Col>
           </Row>
         </Header>
         <Content className="site-layout-background">
@@ -87,7 +90,7 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
           <ErrorToast />
         </Content>
         <Footer style={{ textAlign: 'center', padding: '15px 50px' }}>
-          PascalABC.NET Admin Panel
+          PascalABC.NET
         </Footer>
       </Layout>
     </Layout>

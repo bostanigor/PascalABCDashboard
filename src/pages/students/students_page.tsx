@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'antd'
-import { RoleTag } from 'components/role_tag'
 import { DataTable } from 'components/tables'
 import { getStudents, useFetch } from 'api'
 import * as paths from 'utils/paths'

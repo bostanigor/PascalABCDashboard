@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { InputForm } from 'components/input_form'
-import { Form, Input } from 'antd'
+import { Button, Form, Input, Upload } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 
 type GroupFormProps = {
   initialData?: Group
@@ -15,6 +16,12 @@ export const GroupForm: React.FC<GroupFormProps> = ({
   onFinish,
   name,
 }) => {
+  const [fileList, setFileList] = useState([] as any[])
+  const beforeUpload = (file: any) => {
+    setFileList([file])
+    return false
+  }
+
   return (
     <InputForm name={name} onFinish={onFinish} initialValues={initialData}>
       <Item
@@ -23,6 +30,19 @@ export const GroupForm: React.FC<GroupFormProps> = ({
         rules={[{ required: true, message: 'Выберите, пожалуйста, название' }]}
       >
         <Input />
+      </Item>
+      <Item name="file" label="Файл">
+        <Upload
+          name="file"
+          beforeUpload={beforeUpload}
+          maxCount={1}
+          multiple
+          showUploadList={{
+            showRemoveIcon: false,
+          }}
+        >
+          <Button icon={<UploadOutlined />}>Загрузить файл группы</Button>
+        </Upload>
       </Item>
     </InputForm>
   )

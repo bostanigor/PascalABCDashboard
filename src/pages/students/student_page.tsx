@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card } from 'antd'
 import { CardEntry, CardHeader } from 'components/cards'
-import { RoleTag } from 'components/role_tag'
 import { useFetch, getStudent, deleteStudent, getSolutions } from 'api'
 import { Redirect, useParams } from 'react-router'
 import { Link, useHistory } from 'react-router-dom'

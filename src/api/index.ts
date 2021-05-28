@@ -134,7 +134,7 @@ export const getGroups = (page?: string, pageSize?: string) =>
 export const getGroup = (id: string) =>
   instance.get(`/groups/${id}`).then((res) => res.data as ApiResponse<Group>)
 
-export const createGroup = (params: { group: GroupCreateParams }) =>
+export const createGroup = (params: any) =>
   instance.post('/groups', params).then((res) => res.data as ApiResponse<Group>)
 
 export const updateGroup = (id: string, params: { group: GroupCreateParams }) =>

@@ -29,7 +29,7 @@ export const GroupPage = () => {
           title={
             <CardHeader
               title={`Группа ${data.data.name}`}
-              editPath={paths.studentEditPath(id.toString())}
+              editPath={paths.groupEditPath(id.toString())}
               onDeleteClick={onDeleteClick}
             />
           }

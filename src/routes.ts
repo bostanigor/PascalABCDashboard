@@ -92,6 +92,12 @@ export const AppLayoutRoutes = [
     component: TasksPage,
     breadcrumb: 'Задачи',
   },
+  {
+    path: paths.homePath,
+    exact: true,
+    component: StudentsPage,
+    breadcrumb: 'Начало',
+  },
 ]
 
 export const routes: RouteConfig[] = [
@@ -114,7 +120,7 @@ export const routes: RouteConfig[] = [
       ...AppLayoutRoutes,
       {
         component: () => {
-          return React.createElement(Redirect, { to: paths.homePath })
+          return React.createElement(Redirect, { to: paths.profilePath })
         },
       },
     ],

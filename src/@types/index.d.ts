@@ -16,6 +16,8 @@ type Task = {
   id: number
   name: string
   rating: number
+  successfull_attempts: number
+  all_attempts: number
   ref: string
 }
 
@@ -51,6 +53,7 @@ type StudentCreateParams = {
 
 type GroupCreateParams = {
   name: string
+  file: any
 }
 
 type TaskCreateParams = {

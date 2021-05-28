@@ -1,19 +1,42 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Button, Card } from 'antd'
 import { GroupForm } from './group_form'
 import { createGroup } from 'api'
 import { Redirect, useHistory } from 'react-router-dom'
 import * as paths from 'utils/paths'
 import { CardHeader } from 'components/cards'
 import { useStore } from 'store'
+import jsonToFormData from 'json-form-data'
 
 export const GroupCreatePage = () => {
   const history = useHistory()
   const { userData } = useStore('userData')
-  if (userData?.is_admin) return <Redirect to={paths.profilePath} />
+  if (!userData?.is_admin) return <Redirect to={paths.profilePath} />
 
-  const onFinish = (values: GroupCreateParams) => {
-    createGroup({ group: values })
+  const onFinish = (values: any) => {
+    values.file = values.file.file
+
+    const data = jsonToFormData(
+      { group: values },
+      {
+        mapping: (val) => {
+          if (val === null && val === undefined) return String(val)
+          switch (typeof val) {
+            case 'boolean':
+              return val ? '1' : '0'
+            case 'number':
+              return String(val)
+            case 'string':
+              return val === '' ? ' ' : val
+            default:
+              return val as any
+          }
+        },
+      },
+    )
+    console.log(data)
+
+    createGroup(data)
       .then(({ data }) => {
         data?.id
           ? history.push(paths.groupPath(data.id.toString()))
@@ -21,9 +44,16 @@ export const GroupCreatePage = () => {
       })
       .catch(() => {})
   }
+
+  const onFileUpload = () => {}
   return (
-    <Card title={<CardHeader title={'Создать группу'} />}>
-      <GroupForm name="group-create" onFinish={onFinish} />
-    </Card>
+    <>
+      <Button type="primary" size="large">
+        Загрузить из файла
+      </Button>
+      <Card title={<CardHeader title={'Создать группу'} />}>
+        <GroupForm name="group-create" onFinish={onFinish} />
+      </Card>
+    </>
   )
 }
