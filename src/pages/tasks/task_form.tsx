@@ -20,7 +20,14 @@ export const TaskForm: React.FC<TaskFormProps> = ({
       <Item
         name="name"
         label="Название"
-        rules={[{ required: true, message: 'Выберите, пожалуйста, название' }]}
+        rules={[{ required: true, message: 'Введите, пожалуйста, название' }]}
+      >
+        <Input />
+      </Item>
+      <Item
+        name="ref"
+        label="Ключ"
+        rules={[{ required: true, message: 'Введите, пожалуйста, ключ' }]}
       >
         <Input />
       </Item>

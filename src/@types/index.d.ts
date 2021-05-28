@@ -16,6 +16,7 @@ type Task = {
   id: number
   name: string
   rating: number
+  ref: string
 }
 
 type Solution = {
@@ -54,6 +55,7 @@ type GroupCreateParams = {
 
 type TaskCreateParams = {
   name: string
+  ref: string
 }
 
 type ApiResponse<DataType = null, MetaType = undefined> = {

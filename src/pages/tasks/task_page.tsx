@@ -36,6 +36,9 @@ export const TaskPage = () => {
           <CardEntry title="Рейтинг" key={1}>
             {data.data.rating}
           </CardEntry>
+          <CardEntry title="Ключ" key={1}>
+            {data.data.ref}
+          </CardEntry>
         </Card>
       )}
     </div>
