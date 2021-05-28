@@ -3,10 +3,11 @@ import { Card } from 'antd'
 import { DataTable } from 'components/tables'
 import { getGroups } from 'api'
 import * as paths from 'utils/paths'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory, Link, Redirect } from 'react-router-dom'
 import { FolderAddOutlined, UserAddOutlined } from '@ant-design/icons'
 import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
+import { useStore } from 'store'
 
 const columns = [
   {
@@ -29,6 +30,8 @@ const columns = [
 
 export const GroupsPage = () => {
   const history = useHistory()
+  const { userData } = useStore('userData')
+  if (!userData?.is_admin) return <Redirect to={paths.profilePath} />
 
   return (
     <Card

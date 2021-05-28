@@ -1,12 +1,17 @@
-import { setToken } from 'api'
+import { fetchUser, setToken } from 'api'
 import { createStoreon, StoreonModule } from 'storeon'
 import * as hooks from 'storeon/react'
 
-type State = { isSignedIn: boolean }
+type State = {
+  isSignedIn: boolean
+  userData: FetchData | null
+  isLoading: boolean
+}
 
 type Events = {
   signIn: { token: string }
   signOut: void
+  fetchUser: { data: FetchData | undefined }
 }
 
 // Initial state, reducers and business logic are packed in independent modules
@@ -15,19 +20,28 @@ const baseStore: StoreonModule<State, Events> = (store) => {
   store.on('@init', () => {
     const token = localStorage.getItem('token')
     setToken(token ?? null)
-    return { isSignedIn: !!token }
+    if (token) {
+      fetchUser().then(({ data }) => store.dispatch('fetchUser', { data }))
+      return { isSignedIn: true, userData: null, isLoading: true }
+    }
+    return { isSignedIn: false, userData: null, isLoading: false }
   })
 
   store.on('signIn', (_, { token }) => {
     localStorage.setItem('token', token)
     setToken(token)
-    return { isSignedIn: true }
+    fetchUser().then(({ data }) => store.dispatch('fetchUser', { data }))
+    return { isSignedIn: true, isLoading: true }
   })
 
   store.on('signOut', (_) => {
     localStorage.removeItem('token')
     setToken(null)
-    return { isSignedIn: false }
+    return { isSignedIn: false, userData: null, isLoading: false }
+  })
+
+  store.on('fetchUser', (_, { data }) => {
+    return { isSignedIn: true, userData: data, isLoading: false }
   })
 }
 

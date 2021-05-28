@@ -2,14 +2,18 @@ import React from 'react'
 import { Form, Card } from 'antd'
 import { GroupForm } from './group_form'
 import { updateGroup, useFetch, getGroup, deleteGroup } from 'api'
-import { useHistory, useParams } from 'react-router-dom'
+import { Redirect, useHistory, useParams } from 'react-router-dom'
 import * as paths from 'utils/paths'
 import { CardHeader } from 'components/cards'
+import { useStore } from 'store'
 
 export const GroupEditPage = () => {
   const history = useHistory()
   const { id } = useParams<{ id: string }>()
   const { data } = useFetch(getGroup, [id], {})
+  const { userData } = useStore('userData')
+  if (!userData?.is_admin) return <Redirect to={paths.profilePath} />
+
   const onFinish = (values: GroupCreateParams) => {
     updateGroup(id, { group: values })
       .then(() => history.push(paths.groupPath(id)))

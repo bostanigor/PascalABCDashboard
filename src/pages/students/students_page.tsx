@@ -4,10 +4,11 @@ import { RoleTag } from 'components/role_tag'
 import { DataTable } from 'components/tables'
 import { getStudents, useFetch } from 'api'
 import * as paths from 'utils/paths'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory, Link, Redirect } from 'react-router-dom'
 import { UserAddOutlined } from '@ant-design/icons'
 import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
+import { useStore } from 'store'
 
 export const columns = [
   {
@@ -49,6 +50,9 @@ export const columns = [
 
 export const StudentsPage = () => {
   const history = useHistory()
+  const { userData } = useStore('userData')
+
+  if (!userData?.is_admin) return <Redirect to={paths.profilePath} />
 
   return (
     <Card

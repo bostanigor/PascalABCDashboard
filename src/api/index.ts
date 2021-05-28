@@ -80,6 +80,11 @@ export const signIn = (email: string, password: string) =>
       return res
     })
 
+export const fetchUser = () =>
+  instance.get('/auth').then((res) => {
+    return res.data as ApiResponse<FetchData>
+  })
+
 // Student requests
 export const getStudents = (
   page?: string,

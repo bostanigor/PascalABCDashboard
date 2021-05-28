@@ -58,6 +58,15 @@ type TaskCreateParams = {
   ref: string
 }
 
+type FetchData = {
+  email: string
+  first_name: string | null
+  last_name: string | null
+  birthdate: Date
+  group: Group
+  is_admin: boolean
+}
+
 type ApiResponse<DataType = null, MetaType = undefined> = {
   data?: DataType
   error?: string

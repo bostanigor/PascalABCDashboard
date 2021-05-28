@@ -8,8 +8,6 @@ import { Auth } from 'layouts/auth'
 // Auth components
 import { SignIn } from 'components/auth/sign_in'
 
-import AppLayout from 'layouts/app_layout'
-
 import {
   StudentPage,
   StudentsPage,
@@ -23,8 +21,10 @@ import {
   GroupEditPage,
 } from 'pages/groups'
 import { TasksPage, TaskPage, TaskCreatePage, TaskEditPage } from 'pages/tasks'
+import ProfilePage from 'pages/profile_page'
+import AppLayout from 'layouts/app_layout'
 
-export const AppLayoutRoutes = [
+export const AdminRoutes: RouteConfig[] = [
   // Students
   {
     path: paths.studentsPath,
@@ -61,13 +61,6 @@ export const AppLayoutRoutes = [
     component: GroupEditPage,
     breadcrumb: 'Редактировать',
   },
-  // Tasks
-  {
-    path: paths.tasksPath,
-    exact: true,
-    component: TasksPage,
-    breadcrumb: 'Группы',
-  },
   {
     path: paths.taskCreatePath,
     component: TaskCreatePage,
@@ -78,6 +71,26 @@ export const AppLayoutRoutes = [
     path: paths.taskEditPath(':id'),
     component: TaskEditPage,
     breadcrumb: 'Редактировать',
+  },
+]
+
+export const StudentRoutes: RouteConfig[] = [
+  {
+    path: paths.profilePath,
+    exact: true,
+    component: ProfilePage,
+    breadcrumb: 'Профиль',
+  },
+]
+
+export const AppLayoutRoutes = [
+  ...AdminRoutes,
+  ...StudentRoutes,
+  {
+    path: paths.tasksPath,
+    exact: true,
+    component: TasksPage,
+    breadcrumb: 'Задачи',
   },
 ]
 
@@ -101,7 +114,7 @@ export const routes: RouteConfig[] = [
       ...AppLayoutRoutes,
       {
         component: () => {
-          return React.createElement(Redirect, { to: paths.studentsPath })
+          return React.createElement(Redirect, { to: paths.homePath })
         },
       },
     ],

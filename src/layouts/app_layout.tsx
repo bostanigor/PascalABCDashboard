@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Breadcrumb, Layout, Row } from 'antd'
 import { Redirect } from 'react-router'
 import { useStore } from 'store'
-import { signInPath } from 'utils/paths'
+import { profilePath, signInPath, studentsPath } from 'utils/paths'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 import { SideMenu } from 'components/side_menu'
 import { ErrorToast } from 'components/error_toast'
@@ -20,9 +20,12 @@ const checkShouldBeCollapsed = () => window.innerWidth < collapseWidthBreakpoint
 // General admin panel insides layout
 const AppLayout = ({ route }: RouteConfigComponentProps) => {
   const [isCollapsed, setIsCollapsed] = useState(checkShouldBeCollapsed())
-  const { isSignedIn } = useStore('isSignedIn')
+  const { isSignedIn, userData, isLoading } = useStore(
+    'isSignedIn',
+    'userData',
+    'isLoading',
+  )
   const breadcrumbs = useBreadcrumbs(AppLayoutRoutes as any)
-  if (!isSignedIn) return <Redirect to={signInPath} />
 
   // Collapse side menu on window width rescaling below breakpoint
   useEffect(() => {
@@ -33,6 +36,9 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  if (isLoading) return <div> LOADING </div>
+  if (!isSignedIn) return <Redirect to={signInPath} />
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -47,7 +53,7 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
         >
           <span style={{ fontSize: 25 }}>PascalABC.NET</span>
         </div>
-        <SideMenu />
+        <SideMenu isAdmin={userData!.is_admin} />
       </Sider>
       <Layout className="site-layout">
         <Header style={{ padding: '0 24px' }}>

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Menu } from 'antd'
 import { Link, useRouteMatch } from 'react-router-dom'
-import { studentsPath, groupsPath, tasksPath } from 'utils/paths'
+import { studentsPath, groupsPath, tasksPath, profilePath } from 'utils/paths'
 import {
   UserOutlined,
   ShoppingOutlined,
@@ -29,18 +29,38 @@ const useMenuKeys = () => {
   }, [studentsMatch, groupsMatch, tasksMatch])
 }
 
-export const SideMenu: React.FC<{}> = () => {
+type SideMenuProps = {
+  isAdmin: boolean
+}
+
+export const SideMenu = ({ isAdmin }: SideMenuProps) => {
   return (
     <Menu theme="dark" mode="inline" selectedKeys={useMenuKeys()}>
-      <Menu.Item key={studentsPath} icon={<UserOutlined />}>
-        <Link to={studentsPath}>Студенты</Link>
-      </Menu.Item>
-      <Menu.Item key={groupsPath} icon={<FolderOutlined />}>
-        <Link to={groupsPath}>Группы</Link>
-      </Menu.Item>
-      <Menu.Item key={tasksPath} icon={<FileDoneOutlined />}>
-        <Link to={tasksPath}>Задачи</Link>
-      </Menu.Item>
+      {isAdmin ? (
+        <>
+          <Menu.Item key={studentsPath} icon={<UserOutlined />}>
+            <Link to={studentsPath}>Студенты</Link>
+          </Menu.Item>
+          <Menu.Item key={groupsPath} icon={<FolderOutlined />}>
+            <Link to={groupsPath}>Группы</Link>
+          </Menu.Item>
+          <Menu.Item key={tasksPath} icon={<FileDoneOutlined />}>
+            <Link to={tasksPath}>Задачи</Link>
+          </Menu.Item>
+        </>
+      ) : (
+        <>
+          <Menu.Item key={profilePath} icon={<UserOutlined />}>
+            <Link to={profilePath}>Профиль</Link>
+          </Menu.Item>
+          <Menu.Item key={tasksPath} icon={<FileDoneOutlined />}>
+            <Link to={tasksPath}>Задачи</Link>
+          </Menu.Item>
+          {/* <Menu.Item key={Решения} icon={<FolderOutlined />}>
+            <Link to={groupsPath}>Решения</Link>
+          </Menu.Item> */}
+        </>
+      )}
     </Menu>
   )
 }

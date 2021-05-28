@@ -1,13 +1,15 @@
 import React from 'react'
 import { Card } from 'antd'
 import { StudentForm } from './student_form'
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import * as paths from 'utils/paths'
 import { CardHeader, StyledTitle } from 'components/cards'
 import { createStudent } from 'api'
+import { useStore } from 'store'
 
 export const StudentCreatePage = () => {
   const history = useHistory()
+  const { userData } = useStore('userData')
 
   const onFinish = (values: StudentCreateParams) => {
     createStudent({ student: values })
@@ -18,6 +20,8 @@ export const StudentCreatePage = () => {
       })
       .catch(() => {})
   }
+
+  if (!userData?.is_admin) return <Redirect to={paths.profilePath} />
 
   return (
     <Card title={<CardHeader title={'Создать студента'} />}>

@@ -3,11 +3,12 @@ import { Card } from 'antd'
 import { CardEntry, CardHeader } from 'components/cards'
 import { RoleTag } from 'components/role_tag'
 import { useFetch, getStudent, deleteStudent, getSolutions } from 'api'
-import { useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
 import { Link, useHistory } from 'react-router-dom'
 import * as paths from 'utils/paths'
 import { DataTable } from 'components/tables'
 import { BooleanIcon } from 'components/boolean_icon'
+import { useStore } from 'store'
 
 const solution_columns = [
   {
@@ -42,11 +43,16 @@ export const StudentPage = () => {
 
   const { id } = useParams<{ id: string }>()
   const { data } = useFetch(getStudent, [id])
+  const { userData } = useStore('userData')
+
   const onDeleteClick = () => {
     deleteStudent(id)
       .then(() => history.push(paths.studentsPath))
       .catch(() => {})
   }
+
+  if (!userData?.is_admin) return <Redirect to={paths.profilePath} />
+
   return (
     <div className="site-card-border-less-wrapper">
       {data?.data && (
@@ -65,7 +71,7 @@ export const StudentPage = () => {
             {data.data.first_name}
           </CardEntry>
           <CardEntry title="Фамилия" key={2}>
-            {data.data.first_name}
+            {data.data.last_name}
           </CardEntry>
           <CardEntry title="Дата рождения" key={3}>
             {data.data.birthdate}

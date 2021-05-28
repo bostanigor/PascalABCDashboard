@@ -7,6 +7,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { FileAddOutlined, UserAddOutlined } from '@ant-design/icons'
 import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
+import { useStore } from 'store'
 
 const columns = [
   {
@@ -34,6 +35,7 @@ const columns = [
 
 export const TasksPage = () => {
   const history = useHistory()
+  const { userData } = useStore('userData')
 
   return (
     <Card
@@ -42,7 +44,11 @@ export const TasksPage = () => {
         <StyledTitle
           title="Задачи"
           createButtonContent={
-            <Link to={paths.taskCreatePath}>{<FileAddOutlined />} Создать</Link>
+            userData?.is_admin ? (
+              <Link to={paths.taskCreatePath}>
+                {<FileAddOutlined />} Создать
+              </Link>
+            ) : null
           }
         />
       }
