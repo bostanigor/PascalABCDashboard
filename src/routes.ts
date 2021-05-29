@@ -25,6 +25,7 @@ import ProfilePage from 'pages/profile_page'
 import AppLayout from 'layouts/app_layout'
 import { SolutionPage } from 'pages/solution_page'
 import { AttemptPage } from 'pages/attempt_page'
+import { UpdatePasswordPage } from 'pages/update_password_page'
 
 export const AdminRoutes: RouteConfig[] = [
   // Students
@@ -107,6 +108,12 @@ export const AppLayoutRoutes = [
     exact: true,
     component: StudentsPage,
     breadcrumb: 'Начало',
+  },
+  {
+    path: paths.updatePasswordPath,
+    exact: true,
+    component: UpdatePasswordPage,
+    breadcrumb: 'Изменить пароль',
   },
 ]
 

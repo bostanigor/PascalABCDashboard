@@ -30,3 +30,5 @@ export const solutionPath = (id: string) => `${solutionsPath}/${id}`
 // Attempts
 export const attemptsPath = `${homePath}attempts`
 export const attemptPath = (id: string) => `${attemptsPath}/${id}`
+
+export const updatePasswordPath = `${homePath}update_password`

@@ -10,6 +10,7 @@ import { Header } from 'antd/lib/layout/layout'
 import { SignOut } from 'components/auth/sign_out'
 import useBreadcrumbs from 'use-react-router-breadcrumbs'
 import { AppLayoutRoutes } from '../routes'
+import * as paths from 'utils/paths'
 import { Link } from 'react-router-dom'
 
 const { Content, Sider, Footer } = Layout
@@ -66,7 +67,7 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
                 paddingLeft: 15,
               }}
             >
-              <Breadcrumb
+              {/* <Breadcrumb
                 separator=">"
                 style={{
                   fontSize: 'large',
@@ -77,7 +78,7 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
                     <Link to={b.key}>{b.breadcrumb}</Link>
                   </Breadcrumb.Item>
                 ))}
-              </Breadcrumb>
+              </Breadcrumb> */}
             </Col>
             <Col flex="0.08">{userData?.email}</Col>
             <Col flex="0.08" offset="1">

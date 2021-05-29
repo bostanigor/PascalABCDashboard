@@ -80,6 +80,11 @@ export const signIn = (email: string, password: string) =>
       return res
     })
 
+export const updatePassword = (old_password: string, new_password: string) =>
+  instance
+    .patch('/auth/password', { old_password, new_password })
+    .then((res) => res.data as ApiResponse<FetchData>)
+
 export const fetchUser = () =>
   instance.get('/auth').then((res) => {
     return res.data as ApiResponse<FetchData>
