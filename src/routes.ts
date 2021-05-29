@@ -23,6 +23,8 @@ import {
 import { TasksPage, TaskPage, TaskCreatePage, TaskEditPage } from 'pages/tasks'
 import ProfilePage from 'pages/profile_page'
 import AppLayout from 'layouts/app_layout'
+import { SolutionPage } from 'pages/solution_page'
+import { AttemptPage } from 'pages/attempt_page'
 
 export const AdminRoutes: RouteConfig[] = [
   // Students
@@ -91,6 +93,14 @@ export const AppLayoutRoutes = [
     exact: true,
     component: TasksPage,
     breadcrumb: 'Задачи',
+  },
+  {
+    path: paths.solutionPath(':id'),
+    component: SolutionPage,
+  },
+  {
+    path: paths.attemptPath(':id'),
+    component: AttemptPage,
   },
   {
     path: paths.homePath,

@@ -165,10 +165,12 @@ export const updateTask = (id: string, params: { task: TaskCreateParams }) =>
 
 export const deleteTask = (id: string) => instance.delete(`/tasks/${id}`)
 
+// Solutions
+
 export const getSolutions = (
   page?: string,
   pageSize?: string,
-  filterParams?: StudentFilterParams,
+  filterParams?: object,
 ) =>
   instance
     .get('/solutions', {
@@ -181,6 +183,35 @@ export const getSolutions = (
     .then((res) => {
       return res.data as ApiResponse<Solution[], IndexPageMeta>
     })
+
+export const getSolution = (id: string) =>
+  instance
+    .get(`/solutions/${id}`)
+    .then((res) => res.data as ApiResponse<Solution>)
+
+// Attempts
+
+export const getAttempts = (
+  page?: string,
+  pageSize?: string,
+  filterParams?: object,
+) =>
+  instance
+    .get('/attempts', {
+      params: {
+        ...filterParams,
+        page,
+        per_page: pageSize,
+      },
+    })
+    .then((res) => {
+      return res.data as ApiResponse<Attempt[], IndexPageMeta>
+    })
+
+export const getAttempt = (id: string | number) =>
+  instance
+    .get(`/attempts/${id}`)
+    .then((res) => res.data as ApiResponse<Attempt>)
 
 /// useFetch hook
 const fetchReducer = <Result, Variables>(

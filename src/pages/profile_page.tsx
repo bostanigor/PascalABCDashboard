@@ -5,7 +5,7 @@ import { Card } from 'antd'
 import { CardEntry, CardHeader } from 'components/cards'
 import { DataTable } from 'components/tables'
 import { getSolutions } from 'api'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { BooleanIcon } from 'components/boolean_icon'
 import * as paths from 'utils/paths'
 
@@ -38,6 +38,8 @@ const solution_columns = [
 
 // General admin panel insides layout
 const ProfilePage = ({ route }: RouteConfigComponentProps) => {
+  const history = useHistory()
+
   const { userData } = useStore('userData')
   if (userData?.is_admin) return <Redirect to={paths.studentsPath} />
 
@@ -59,16 +61,21 @@ const ProfilePage = ({ route }: RouteConfigComponentProps) => {
           <CardEntry title="Фамилия" key={2}>
             {userData.last_name}
           </CardEntry>
-          <CardEntry title="Дата рождения" key={3}>
-            {userData.birthdate}
-          </CardEntry>
           <CardEntry title="Email" key={4}>
             {userData.email}
           </CardEntry>
           <CardEntry title="Группа" key={5}>
             {userData.group.name}
           </CardEntry>
-          <DataTable columns={solution_columns} getMethod={getSolutions} />
+          <DataTable
+            columns={solution_columns}
+            getMethod={getSolutions}
+            onRow={(record) => {
+              return {
+                onClick: () => history.push(paths.solutionPath(record.id)),
+              }
+            }}
+          />
         </Card>
       </div>
     )

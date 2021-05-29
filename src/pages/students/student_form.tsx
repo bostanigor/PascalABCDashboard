@@ -25,7 +25,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
 
   const initData = {
     ...initialData,
-    birthdate: moment(initialData?.birthdate),
     group_id: initialData?.group.id,
     user_attributes: { email: initialData?.email },
   }
@@ -37,9 +36,6 @@ export const StudentForm: React.FC<StudentFormProps> = ({
       </Item>
       <Item name="last_name" label="Фамилия">
         <Input />
-      </Item>
-      <Item name="birthdate" label="Дата рождения">
-        <DatePicker />
       </Item>
 
       {groupsOptions && (

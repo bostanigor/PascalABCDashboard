@@ -1,7 +1,14 @@
 import React, { useMemo } from 'react'
 import { Menu } from 'antd'
 import { Link, useRouteMatch } from 'react-router-dom'
-import { studentsPath, groupsPath, tasksPath, profilePath } from 'utils/paths'
+import {
+  studentsPath,
+  groupsPath,
+  tasksPath,
+  profilePath,
+  solutionsPath,
+  solutionPath,
+} from 'utils/paths'
 import {
   UserOutlined,
   ShoppingOutlined,
@@ -56,9 +63,6 @@ export const SideMenu = ({ isAdmin }: SideMenuProps) => {
           <Menu.Item key={tasksPath} icon={<FileDoneOutlined />}>
             <Link to={tasksPath}>Задачи</Link>
           </Menu.Item>
-          {/* <Menu.Item key={Решения} icon={<FolderOutlined />}>
-            <Link to={groupsPath}>Решения</Link>
-          </Menu.Item> */}
         </>
       )}
     </Menu>

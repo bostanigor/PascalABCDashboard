@@ -2,7 +2,6 @@ type Student = {
   id: number
   first_name: string
   last_name: string
-  birthdate: Date
   email: string
   group: Group
 }
@@ -30,6 +29,14 @@ type Solution = {
   last_attempt_at: Date
 }
 
+type Attempt = {
+  id: number
+  status: string
+  solution: Solution
+  code_text: string
+  created_at: Date
+}
+
 type IndexPageMeta = {
   current_page: number
   next_page: number
@@ -45,7 +52,6 @@ type StudentFilterParams = {
 type StudentCreateParams = {
   first_name: string
   last_name: string
-  birthdate: string
   email: string
   password: string
   group_id: string
@@ -62,13 +68,8 @@ type TaskCreateParams = {
 }
 
 type FetchData = {
-  email: string
-  first_name: string | null
-  last_name: string | null
-  birthdate: Date
-  group: Group
   is_admin: boolean
-}
+} & Student
 
 type ApiResponse<DataType = null, MetaType = undefined> = {
   data?: DataType

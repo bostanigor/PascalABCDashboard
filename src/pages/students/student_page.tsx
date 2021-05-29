@@ -72,9 +72,6 @@ export const StudentPage = () => {
           <CardEntry title="Фамилия" key={2}>
             {data.data.last_name}
           </CardEntry>
-          <CardEntry title="Дата рождения" key={3}>
-            {data.data.birthdate}
-          </CardEntry>
           <CardEntry title="Email" key={4}>
             {data.data.email}
           </CardEntry>
@@ -86,6 +83,11 @@ export const StudentPage = () => {
           <DataTable
             columns={solution_columns}
             getMethod={getSolutions}
+            onRow={(record) => {
+              return {
+                onClick: () => history.push(paths.solutionPath(record.id)),
+              }
+            }}
             getParams={{ student_id: data.data.id }}
           />
         </Card>

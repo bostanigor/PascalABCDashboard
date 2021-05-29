@@ -22,3 +22,11 @@ export const tasksPath = `${homePath}tasks`
 export const taskPath = (id: string) => `${tasksPath}/${id}`
 export const taskCreatePath = `${tasksPath}/create`
 export const taskEditPath = (id: string) => `${tasksPath}/${id}/edit`
+
+// Solutions
+export const solutionsPath = `${homePath}solutions`
+export const solutionPath = (id: string) => `${solutionsPath}/${id}`
+
+// Attempts
+export const attemptsPath = `${homePath}attempts`
+export const attemptPath = (id: string) => `${attemptsPath}/${id}`
