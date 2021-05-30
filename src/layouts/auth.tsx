@@ -28,7 +28,7 @@ export const Auth = ({ route }: RouteConfigComponentProps) => {
         }}
       >
         <div className="site-card-border-less-wrapper">
-          <Card title="Sign In" style={{ width: 350 }}>
+          <Card title="Вход в систему" style={{ width: 350 }}>
             {route && renderRoutes(route.routes)}
           </Card>
         </div>

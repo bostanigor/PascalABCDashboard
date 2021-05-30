@@ -22,7 +22,7 @@ export const SignIn = () => {
     >
       <Form.Item
         name="email"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[{ required: true, message: 'Введите, пожалуйста, Email' }]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
@@ -32,18 +32,18 @@ export const SignIn = () => {
 
       <Form.Item
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: 'Введите, пожалуйста, пароль' }]}
       >
         <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
         />
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" block>
-          Submit
+          Войти
         </Button>
       </Form.Item>
     </Form>
