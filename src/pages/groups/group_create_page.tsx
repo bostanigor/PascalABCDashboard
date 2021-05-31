@@ -48,9 +48,6 @@ export const GroupCreatePage = () => {
   const onFileUpload = () => {}
   return (
     <>
-      <Button type="primary" size="large">
-        Загрузить из файла
-      </Button>
       <Card title={<CardHeader title={'Создать группу'} />}>
         <GroupForm name="group-create" onFinish={onFinish} />
       </Card>
