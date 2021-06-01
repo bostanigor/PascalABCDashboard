@@ -8,11 +8,11 @@ require('dotenv').config()
 const errorPrefix = (status: number) => {
   switch (status) {
     case 422:
-      return 'Invalid Form Data: '
+      return 'Неверные данные: '
     case 403:
-      return 'Access Denied: '
+      return 'Нет доступа: '
     default:
-      return 'Error has occurred: '
+      return 'Произошла ошибка: '
   }
 }
 
@@ -42,6 +42,7 @@ instance.interceptors.response.use(
       // TODO: Fix no logout on wrong token
       const axios_error = error as AxiosError
       if (axios_error?.response?.data?.errors) {
+        console.log(axios_error.response.data?.errors)
         const message =
           errorPrefix(axios_error.response.status) +
           Object.entries(axios_error.response.data?.errors)
@@ -66,10 +67,10 @@ export const setToken = (token: string | null) => {
   instance.defaults.headers['Authorization'] = `Bearer ${token}`
 }
 
-export const signIn = (email: string, password: string) =>
+export const signIn = (username: string, password: string) =>
   instance
     .post('/auth', {
-      email,
+      username,
       password,
     })
     .then((res) => {

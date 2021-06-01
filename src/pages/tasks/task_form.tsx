@@ -24,11 +24,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
       >
         <Input />
       </Item>
-      <Item
-        name="ref"
-        label="Ключ"
-        rules={[{ required: true, message: 'Введите, пожалуйста, ключ' }]}
-      >
+      <Item name="description" label="Описание">
         <Input />
       </Item>
     </InputForm>

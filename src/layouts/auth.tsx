@@ -19,7 +19,7 @@ export const Auth = ({ route }: RouteConfigComponentProps) => {
         height: '100vh',
       }}
     >
-      <Header>Header</Header>
+      <Header>Аутентификация</Header>
       <Content
         style={{
           display: 'flex',

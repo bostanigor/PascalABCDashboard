@@ -26,7 +26,7 @@ export const StudentForm: React.FC<StudentFormProps> = ({
   const initData = {
     ...initialData,
     group_id: initialData?.group.id,
-    user_attributes: { email: initialData?.email },
+    user_attributes: { email: initialData?.username },
   }
 
   return (
@@ -56,27 +56,21 @@ export const StudentForm: React.FC<StudentFormProps> = ({
 
       <Item
         name={['user_attributes', 'email']}
-        label="E-mail"
+        label="Имя пользователя"
         rules={[
-          {
-            type: 'email',
-            message: "Введенное значение не является допустимым E-mail'ом",
-          },
-          { required: true, message: 'Выберите, пожалуйста, E-mail' },
+          { required: true, message: 'Выберите, пожалуйста, имя пользователя' },
         ]}
       >
         <Input />
       </Item>
 
-      {isNew && (
-        <Item
-          name={['user_attributes', 'password']}
-          label="Пароль"
-          rules={[{ required: true, message: 'Введите, пожалуйста, пароль' }]}
-        >
-          <Input.Password />
-        </Item>
-      )}
+      <Item
+        name={['user_attributes', 'password']}
+        label="Пароль"
+        rules={[{ required: true, message: 'Введите, пожалуйста, пароль' }]}
+      >
+        <Input.Password />
+      </Item>
     </InputForm>
   )
 }

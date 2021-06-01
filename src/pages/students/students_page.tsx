@@ -21,9 +21,9 @@ export const columns = [
     key: 'last_name',
   },
   {
-    title: <h1> Email </h1>,
-    dataIndex: 'email',
-    key: 'email',
+    title: <h1> Имя пользователя </h1>,
+    dataIndex: 'username',
+    key: 'username',
   },
   {
     title: <h1> Группа </h1>,

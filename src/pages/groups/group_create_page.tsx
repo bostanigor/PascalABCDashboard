@@ -34,7 +34,6 @@ export const GroupCreatePage = () => {
         },
       },
     )
-    console.log(data)
 
     createGroup(data)
       .then(({ data }) => {

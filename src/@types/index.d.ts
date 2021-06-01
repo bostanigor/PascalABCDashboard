@@ -2,7 +2,7 @@ type Student = {
   id: number
   first_name: string
   last_name: string
-  email: string
+  username: string
   group: Group
 }
 
@@ -17,7 +17,7 @@ type Task = {
   rating: number
   successfull_attempts: number
   all_attempts: number
-  ref: string
+  description: string
 }
 
 type Solution = {
@@ -52,7 +52,7 @@ type StudentFilterParams = {
 type StudentCreateParams = {
   first_name: string
   last_name: string
-  email: string
+  username: string
   password: string
   group_id: string
 }
@@ -64,7 +64,7 @@ type GroupCreateParams = {
 
 type TaskCreateParams = {
   name: string
-  ref: string
+  description: string
 }
 
 type FetchData = {

@@ -61,8 +61,8 @@ const ProfilePage = ({ route }: RouteConfigComponentProps) => {
           <CardEntry title="Фамилия" key={2}>
             {userData.last_name}
           </CardEntry>
-          <CardEntry title="Email" key={4}>
-            {userData.email}
+          <CardEntry title="Имя пользователя" key={4}>
+            {userData.username}
           </CardEntry>
           <CardEntry title="Группа" key={5}>
             {userData.group.name}

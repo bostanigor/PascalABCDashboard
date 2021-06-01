@@ -80,7 +80,7 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
                 ))}
               </Breadcrumb> */}
             </Col>
-            <Col flex="0.08">{userData?.email}</Col>
+            <Col flex="0.08">{userData?.username}</Col>
             <Col flex="0.08" offset="1">
               {isSignedIn && <SignOut />}
             </Col>

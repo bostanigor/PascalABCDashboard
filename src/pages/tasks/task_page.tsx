@@ -42,8 +42,8 @@ export const TaskPage = () => {
           <CardEntry title="Количество всех попыток" key={1}>
             {data.data.all_attempts}
           </CardEntry>
-          <CardEntry title="Ключ" key={1}>
-            {data.data.ref}
+          <CardEntry title="Описание" key={1}>
+            {data.data.description}
           </CardEntry>
         </Card>
       )}

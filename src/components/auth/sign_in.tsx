@@ -3,10 +3,10 @@ import { Form, Input, Button } from 'antd'
 import { signIn } from 'api'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
-type SignInParams = { email: string; password: string }
+type SignInParams = { username: string; password: string }
 export const SignIn = () => {
-  const onFinish = ({ email, password }: SignInParams) => {
-    return signIn(email, password).catch(() => {})
+  const onFinish = ({ username, password }: SignInParams) => {
+    return signIn(username, password).catch(() => {})
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -21,12 +21,14 @@ export const SignIn = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        name="email"
-        rules={[{ required: true, message: 'Введите, пожалуйста, Email' }]}
+        name="username"
+        rules={[
+          { required: true, message: 'Введите, пожалуйста, имя пользователя' },
+        ]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
+          placeholder="Имя пользователя"
         />
       </Form.Item>
 

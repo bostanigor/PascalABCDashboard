@@ -72,8 +72,8 @@ export const StudentPage = () => {
           <CardEntry title="Фамилия" key={2}>
             {data.data.last_name}
           </CardEntry>
-          <CardEntry title="Email" key={4}>
-            {data.data.email}
+          <CardEntry title="Имя пользователя" key={4}>
+            {data.data.username}
           </CardEntry>
           <CardEntry title="Группа" key={5}>
             <Link to={paths.groupPath(data.data.group.id.toString())}>
