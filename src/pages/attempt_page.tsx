@@ -5,6 +5,7 @@ import { useFetch, getAttempt } from 'api'
 import { Redirect, useParams } from 'react-router'
 import { Link, useHistory } from 'react-router-dom'
 import * as paths from 'utils/paths'
+import { StatusTag } from 'components/status_tag'
 
 export const AttemptPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -35,7 +36,7 @@ export const AttemptPage = () => {
             </Link>
           </CardEntry>
           <CardEntry title="Статус" key={4}>
-            {data.data.status}
+            <StatusTag value={data.data.status} />
           </CardEntry>
           <CardEntry title="Текст решения" key={4}>
             {data.data.code_text}

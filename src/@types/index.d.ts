@@ -37,16 +37,18 @@ type Attempt = {
   created_at: Date
 }
 
+type Settings = {
+  retry_interval: number
+  code_text_limit: number
+  attempts_count: number
+}
+
 type IndexPageMeta = {
   current_page: number
   next_page: number
   prev_page: number
   total_pages: number
   total_count: number
-}
-
-type StudentFilterParams = {
-  group_id: number
 }
 
 type StudentCreateParams = {
@@ -65,6 +67,11 @@ type GroupCreateParams = {
 type TaskCreateParams = {
   name: string
   description: string
+}
+
+type SettingsCreateParams = {
+  retry_interval: number
+  code_text_limit: number
 }
 
 type FetchData = {

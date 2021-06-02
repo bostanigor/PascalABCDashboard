@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, Select, Space } from 'antd'
-import { FormInstance } from 'antd/lib/form'
+import { FormInstance, FormProps } from 'antd/lib/form'
 
 type InputFormProps = {
   name: string

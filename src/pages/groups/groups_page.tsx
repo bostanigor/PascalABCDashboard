@@ -9,6 +9,13 @@ import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
 import { useStore } from 'store'
 
+const filters = [
+  {
+    label: 'Название',
+    key: 'name',
+  },
+]
+
 const columns = [
   {
     title: <h1> Название </h1>,
@@ -50,6 +57,7 @@ export const GroupsPage = () => {
       <DataTable
         columns={columns}
         getMethod={getGroups}
+        filters={filters}
         onRow={(record) => {
           return {
             onClick: () => history.push(paths.groupPath(record.id)),

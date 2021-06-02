@@ -26,6 +26,7 @@ import AppLayout from 'layouts/app_layout'
 import { SolutionPage } from 'pages/solution_page'
 import { AttemptPage } from 'pages/attempt_page'
 import { UpdatePasswordPage } from 'pages/update_password_page'
+import { SettingsEditPage, SettingsPage } from 'pages/settings'
 
 export const AdminRoutes: RouteConfig[] = [
   // Students
@@ -74,6 +75,15 @@ export const AdminRoutes: RouteConfig[] = [
     path: paths.taskEditPath(':id'),
     component: TaskEditPage,
     breadcrumb: 'Редактировать',
+  },
+  {
+    path: paths.settingsEditPath,
+    component: SettingsEditPage,
+  },
+  {
+    path: paths.settingsPath,
+    component: SettingsPage,
+    exact: true,
   },
 ]
 

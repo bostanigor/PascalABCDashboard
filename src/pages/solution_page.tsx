@@ -16,12 +16,14 @@ import { ActionsColumn, DataTable } from 'components/tables'
 import { columns as student_columns } from 'pages/students/students_page'
 import { useStore } from 'store'
 import { BooleanIcon } from 'components/boolean_icon'
+import { StatusTag } from 'components/status_tag'
 
 const attempts_columns = [
   {
     title: <h1> Статус </h1>,
     dataIndex: 'status',
     key: 'status',
+    render: (value: string) => <StatusTag value={value} />,
   },
   {
     title: <h1> Дата </h1>,

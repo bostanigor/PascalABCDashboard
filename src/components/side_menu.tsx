@@ -6,34 +6,38 @@ import {
   groupsPath,
   tasksPath,
   profilePath,
+  settingsPath,
+  attemptsPath,
   solutionsPath,
-  solutionPath,
 } from 'utils/paths'
 import {
   UserOutlined,
-  ShoppingOutlined,
-  BgColorsOutlined,
-  ShopOutlined,
-  QuestionOutlined,
-  PoundOutlined,
   FileDoneOutlined,
-  FolderFilled,
+  SettingOutlined,
   FolderOutlined,
 } from '@ant-design/icons'
 
 const useMenuKeys = () => {
-  const studentsMatch = useRouteMatch(studentsPath) ? studentsPath : null
+  const studentsMatch = useRouteMatch([
+    studentsPath,
+    attemptsPath,
+    solutionsPath,
+  ])
+    ? studentsPath
+    : null
   const groupsMatch = useRouteMatch(groupsPath) ? groupsPath : null
   const tasksMatch = useRouteMatch(tasksPath) ? tasksPath : null
+  const settingsMatch = useRouteMatch(settingsPath) ? settingsPath : null
 
   return useMemo(() => {
     const keys = []
     studentsMatch && keys.push(studentsPath)
     groupsMatch && keys.push(groupsPath)
     tasksMatch && keys.push(tasksPath)
+    settingsMatch && keys.push(settingsPath)
 
     return keys
-  }, [studentsMatch, groupsMatch, tasksMatch])
+  }, [studentsMatch, groupsMatch, tasksMatch, settingsMatch])
 }
 
 type SideMenuProps = {
@@ -53,6 +57,9 @@ export const SideMenu = ({ isAdmin }: SideMenuProps) => {
           </Menu.Item>
           <Menu.Item key={tasksPath} icon={<FileDoneOutlined />}>
             <Link to={tasksPath}>Задачи</Link>
+          </Menu.Item>
+          <Menu.Item key={settingsPath} icon={<SettingOutlined />}>
+            <Link to={settingsPath}>Настройки</Link>
           </Menu.Item>
         </>
       ) : (

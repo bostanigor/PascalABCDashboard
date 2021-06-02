@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { store, useStore } from 'store'
 import { toast } from 'react-toastify'
 import { useHistory } from 'react-router'
+
 require('dotenv').config()
 
 const errorPrefix = (status: number) => {
@@ -95,12 +96,12 @@ export const fetchUser = () =>
 export const getStudents = (
   page?: string,
   pageSize?: string,
-  filterParams?: StudentFilterParams,
+  getParams?: object,
 ) =>
   instance
     .get('/students', {
       params: {
-        ...filterParams,
+        ...getParams,
         page,
         per_page: pageSize,
       },
@@ -130,9 +131,13 @@ export const updateStudent = (
 export const deleteStudent = (id: string) => instance.delete(`/students/${id}`)
 
 // GROUPS
-export const getGroups = (page?: string, pageSize?: string) =>
+export const getGroups = (
+  page?: string,
+  pageSize?: string,
+  getParams?: object,
+) =>
   instance
-    .get('/groups', { params: { page, per_page: pageSize } })
+    .get('/groups', { params: { ...getParams, page, per_page: pageSize } })
     .then((res) => {
       return res.data as ApiResponse<Group[], IndexPageMeta>
     })
@@ -151,9 +156,13 @@ export const updateGroup = (id: string, params: { group: GroupCreateParams }) =>
 export const deleteGroup = (id: string) => instance.delete(`/groups/${id}`)
 
 // TASKS
-export const getTasks = (page?: string, pageSize?: string) =>
+export const getTasks = (
+  page?: string,
+  pageSize?: string,
+  getParams?: object,
+) =>
   instance
-    .get('/tasks', { params: { page, per_page: pageSize } })
+    .get('/tasks', { params: { ...getParams, page, per_page: pageSize } })
     .then((res) => {
       return res.data as ApiResponse<Task[], IndexPageMeta>
     })
@@ -176,12 +185,12 @@ export const deleteTask = (id: string) => instance.delete(`/tasks/${id}`)
 export const getSolutions = (
   page?: string,
   pageSize?: string,
-  filterParams?: object,
+  getParams?: object,
 ) =>
   instance
     .get('/solutions', {
       params: {
-        ...filterParams,
+        ...getParams,
         page,
         per_page: pageSize,
       },
@@ -200,12 +209,12 @@ export const getSolution = (id: string) =>
 export const getAttempts = (
   page?: string,
   pageSize?: string,
-  filterParams?: object,
+  getParams?: object,
 ) =>
   instance
     .get('/attempts', {
       params: {
-        ...filterParams,
+        ...getParams,
         page,
         per_page: pageSize,
       },
@@ -218,6 +227,14 @@ export const getAttempt = (id: string | number) =>
   instance
     .get(`/attempts/${id}`)
     .then((res) => res.data as ApiResponse<Attempt>)
+
+export const getSettings = () =>
+  instance.get(`/settings`).then((res) => res.data as ApiResponse<Settings>)
+
+export const updateSettings = (params: { settings: SettingsCreateParams }) =>
+  instance
+    .patch(`/settings`, params)
+    .then((res) => res.data as ApiResponse<Settings>)
 
 /// useFetch hook
 const fetchReducer = <Result, Variables>(

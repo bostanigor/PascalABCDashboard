@@ -7,8 +7,8 @@ type CardEntryProps = {
 
 export const CardEntry: FC<CardEntryProps> = ({ title, children }) => {
   return (
-    <Row>
-      <Col flex="0.5">
+    <Row style={{ marginBottom: '5px' }}>
+      <Col flex="1">
         <div style={{ fontSize: 'large', color: '#757575' }}>{title}</div>
       </Col>
       <Col flex="0.1" />

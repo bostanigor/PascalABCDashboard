@@ -9,6 +9,17 @@ import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
 import { useStore } from 'store'
 
+const filters = [
+  {
+    label: 'Имя',
+    key: 'first_name',
+  },
+  {
+    label: 'Фамилия',
+    key: 'last_name',
+  },
+]
+
 export const columns = [
   {
     title: <h1> Имя </h1>,
@@ -67,7 +78,7 @@ export const StudentsPage = () => {
         />
       }
     >
-      <DataTable columns={columns} getMethod={getStudents} />
+      <DataTable columns={columns} filters={filters} getMethod={getStudents} />
     </Card>
   )
 }

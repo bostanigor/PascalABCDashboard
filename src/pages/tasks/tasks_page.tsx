@@ -9,6 +9,17 @@ import { ActionsColumn } from 'components/tables/actions_column'
 import { StyledTitle } from 'components/cards'
 import { useStore } from 'store'
 
+const filters = [
+  {
+    label: 'Название',
+    key: 'name',
+  },
+  {
+    label: 'Описание',
+    key: 'description',
+  },
+]
+
 const columns = [
   {
     title: <h1> Название </h1>,
@@ -55,6 +66,7 @@ export const TasksPage = () => {
     >
       <DataTable
         columns={columns}
+        filters={filters}
         getMethod={getTasks}
         onRow={(record) => {
           return {
