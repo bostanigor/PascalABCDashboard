@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Breadcrumb, Layout, Row } from 'antd'
+import { Button, Col, Breadcrumb, Layout, Row, Spin } from 'antd'
 import { Redirect } from 'react-router'
 import { useStore } from 'store'
 import { profilePath, signInPath, studentsPath } from 'utils/paths'
@@ -38,7 +38,14 @@ const AppLayout = ({ route }: RouteConfigComponentProps) => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  if (isLoading) return <div> LOADING </div>
+  if (isLoading)
+    return (
+      <Spin
+        size="large"
+        tip="Загрузка..."
+        style={{ margin: '20px', textAlign: 'center' }}
+      />
+    )
   if (!isSignedIn) return <Redirect to={signInPath} />
 
   return (

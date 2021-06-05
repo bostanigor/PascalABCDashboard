@@ -41,7 +41,11 @@ export const AdminRoutes: RouteConfig[] = [
     component: StudentCreatePage,
     breadcrumb: 'Создать',
   },
-  { path: paths.studentPath(':id'), exact: true, component: StudentPage },
+  {
+    path: paths.studentPath(':id'),
+    exact: true,
+    component: StudentPage,
+  },
   {
     path: paths.studentEditPath(':id'),
     component: StudentEditPage,

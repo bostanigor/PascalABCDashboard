@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'antd'
 import { DataTable } from 'components/tables'
-import { getGroups } from 'api'
+import { deleteGroups, getGroups } from 'api'
 import * as paths from 'utils/paths'
 import { useHistory, Link, Redirect } from 'react-router-dom'
 import { FolderAddOutlined, UserAddOutlined } from '@ant-design/icons'
@@ -35,6 +35,13 @@ const columns = [
   },
 ]
 
+const batchActions = [
+  {
+    label: 'Удалить выбранное',
+    onClick: (ids: string[]) => deleteGroups(ids),
+  },
+]
+
 export const GroupsPage = () => {
   const history = useHistory()
   const { userData } = useStore('userData')
@@ -58,6 +65,7 @@ export const GroupsPage = () => {
         columns={columns}
         getMethod={getGroups}
         filters={filters}
+        batchActions={batchActions}
         onRow={(record) => {
           return {
             onClick: () => history.push(paths.groupPath(record.id)),

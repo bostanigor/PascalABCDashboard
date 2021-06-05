@@ -28,6 +28,7 @@ const useMenuKeys = () => {
   const groupsMatch = useRouteMatch(groupsPath) ? groupsPath : null
   const tasksMatch = useRouteMatch(tasksPath) ? tasksPath : null
   const settingsMatch = useRouteMatch(settingsPath) ? settingsPath : null
+  const profileMatch = useRouteMatch(profilePath) ? profilePath : null
 
   return useMemo(() => {
     const keys = []
@@ -35,9 +36,10 @@ const useMenuKeys = () => {
     groupsMatch && keys.push(groupsPath)
     tasksMatch && keys.push(tasksPath)
     settingsMatch && keys.push(settingsPath)
+    profileMatch && keys.push(profilePath)
 
     return keys
-  }, [studentsMatch, groupsMatch, tasksMatch, settingsMatch])
+  }, [studentsMatch, groupsMatch, tasksMatch, settingsMatch, profileMatch])
 }
 
 type SideMenuProps = {

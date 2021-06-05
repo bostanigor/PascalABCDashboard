@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'antd'
 import { DataTable } from 'components/tables'
-import { getTasks } from 'api'
+import { deleteTasks, getTasks } from 'api'
 import * as paths from 'utils/paths'
 import { useHistory, Link } from 'react-router-dom'
 import { FileAddOutlined, UserAddOutlined } from '@ant-design/icons'
@@ -20,7 +20,7 @@ const filters = [
   },
 ]
 
-const columns = [
+const columns = (isAdmin: boolean) => [
   {
     title: <h1> Название </h1>,
     dataIndex: 'name',
@@ -30,6 +30,7 @@ const columns = [
     title: <h1> Рейтинг </h1>,
     dataIndex: 'rating',
     key: 'rating',
+    render: (value: string) => <b>{value}</b>,
   },
   {
     title: 'Действия',
@@ -38,9 +39,18 @@ const columns = [
       <ActionsColumn
         record={record}
         showPath={paths.taskPath(record.id.toString())}
-        editPath={paths.taskEditPath(record.id.toString())}
+        editPath={
+          isAdmin ? paths.taskEditPath(record.id.toString()) : undefined
+        }
       />
     ),
+  },
+]
+
+const batchActions = [
+  {
+    label: 'Удалить выбранное',
+    onClick: (ids: string[]) => deleteTasks(ids),
   },
 ]
 
@@ -65,9 +75,16 @@ export const TasksPage = () => {
       }
     >
       <DataTable
-        columns={columns}
+        columns={columns(userData!.is_admin)}
         filters={filters}
+        batchActions={userData!.is_admin ? batchActions : undefined}
         getMethod={getTasks}
+        expandable={{
+          expandedRowRender: (record) => (
+            <p style={{ margin: 0 }}>{record.description}</p>
+          ),
+          rowExpandable: (record) => record.description,
+        }}
         onRow={(record) => {
           return {
             onClick: () => history.push(paths.taskPath(record.id)),

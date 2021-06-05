@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'antd'
 import { DataTable } from 'components/tables'
-import { getStudents, useFetch } from 'api'
+import { deleteStudents, getStudents, useFetch } from 'api'
 import * as paths from 'utils/paths'
 import { useHistory, Link, Redirect } from 'react-router-dom'
 import { UserAddOutlined } from '@ant-design/icons'
@@ -58,6 +58,13 @@ export const columns = [
   },
 ]
 
+const batchActions = [
+  {
+    label: 'Удалить выбранное',
+    onClick: (ids: string[]) => deleteStudents(ids),
+  },
+]
+
 export const StudentsPage = () => {
   const history = useHistory()
   const { userData } = useStore('userData')
@@ -78,7 +85,12 @@ export const StudentsPage = () => {
         />
       }
     >
-      <DataTable columns={columns} filters={filters} getMethod={getStudents} />
+      <DataTable
+        columns={columns}
+        filters={filters}
+        batchActions={batchActions}
+        getMethod={getStudents}
+      />
     </Card>
   )
 }

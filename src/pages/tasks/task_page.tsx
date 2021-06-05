@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Card, Skeleton } from 'antd'
 import { CardEntry, CardHeader } from 'components/cards'
 import { useFetch, getTask, deleteTask } from 'api'
 import { useParams } from 'react-router'
@@ -16,6 +16,7 @@ export const TaskPage = () => {
       .then(() => history.push(paths.tasksPath))
       .catch(() => {})
   }
+
   return (
     <div className="site-card-border-less-wrapper">
       {data?.data && (

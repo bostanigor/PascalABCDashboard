@@ -130,6 +130,9 @@ export const updateStudent = (
 
 export const deleteStudent = (id: string) => instance.delete(`/students/${id}`)
 
+export const deleteStudents = (ids: string[]) =>
+  instance.delete(`/students/batch_destroy`, { params: { ids } })
+
 // GROUPS
 export const getGroups = (
   page?: string,
@@ -155,6 +158,9 @@ export const updateGroup = (id: string, params: { group: GroupCreateParams }) =>
 
 export const deleteGroup = (id: string) => instance.delete(`/groups/${id}`)
 
+export const deleteGroups = (ids: string[]) =>
+  instance.delete(`/groups/batch_destroy`, { params: { ids } })
+
 // TASKS
 export const getTasks = (
   page?: string,
@@ -179,6 +185,9 @@ export const updateTask = (id: string, params: { task: TaskCreateParams }) =>
     .then((res) => res.data as ApiResponse<Task>)
 
 export const deleteTask = (id: string) => instance.delete(`/tasks/${id}`)
+
+export const deleteTasks = (ids: string[]) =>
+  instance.delete(`/tasks/batch_destroy`, { params: { ids } })
 
 // Solutions
 
@@ -235,6 +244,8 @@ export const updateSettings = (params: { settings: SettingsCreateParams }) =>
   instance
     .patch(`/settings`, params)
     .then((res) => res.data as ApiResponse<Settings>)
+
+export const destroyAllAttempts = () => instance.delete(`/attempts/destroy_all`)
 
 /// useFetch hook
 const fetchReducer = <Result, Variables>(
