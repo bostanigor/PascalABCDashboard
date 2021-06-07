@@ -53,7 +53,7 @@ export const GroupsPage = () => {
       title={
         <StyledTitle
           title="Группы"
-          createButtonContent={
+          buttonsContents={
             <Link to={paths.groupCreatePath}>
               {<FolderAddOutlined />} Создать
             </Link>

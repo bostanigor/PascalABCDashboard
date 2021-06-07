@@ -77,7 +77,7 @@ export const StudentsPage = () => {
       title={
         <StyledTitle
           title="Студенты"
-          createButtonContent={
+          buttonsContents={
             <Link to={paths.studentCreatePath}>
               {<UserAddOutlined />} Создать
             </Link>

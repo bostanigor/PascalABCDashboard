@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Card, Space } from 'antd'
 import { DataTable } from 'components/tables'
 import { deleteTasks, getTasks } from 'api'
 import * as paths from 'utils/paths'
@@ -64,12 +64,17 @@ export const TasksPage = () => {
       title={
         <StyledTitle
           title="Задачи"
-          createButtonContent={
-            userData?.is_admin ? (
-              <Link to={paths.taskCreatePath}>
-                {<FileAddOutlined />} Создать
-              </Link>
-            ) : null
+          buttonsContents={
+            userData?.is_admin
+              ? [
+                  <Link to={paths.tasksFileCreatePath} key="create-tasks">
+                    {<FileAddOutlined />} Создать группу задач
+                  </Link>,
+                  <Link to={paths.taskCreatePath} key="create-task">
+                    {<FileAddOutlined />} Создать
+                  </Link>,
+                ]
+              : null
           }
         />
       }

@@ -179,6 +179,11 @@ export const getTask = (id: string) =>
 export const createTask = (params: { task: TaskCreateParams }) =>
   instance.post('/tasks', params).then((res) => res.data as ApiResponse<Task>)
 
+export const createTasksByFile = (params: any) =>
+  instance
+    .post('/tasks/create_by_file', params)
+    .then((res) => res.data as ApiResponse<Task[]>)
+
 export const updateTask = (id: string, params: { task: TaskCreateParams }) =>
   instance
     .put(`/tasks/${id}`, params)

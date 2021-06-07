@@ -38,7 +38,7 @@ export const GroupForm: React.FC<GroupFormProps> = ({
           maxCount={1}
           multiple
           showUploadList={{
-            showRemoveIcon: false,
+            showRemoveIcon: true,
           }}
         >
           <Button icon={<UploadOutlined />}>Загрузить файл группы</Button>

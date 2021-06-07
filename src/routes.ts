@@ -20,7 +20,13 @@ import {
   GroupCreatePage,
   GroupEditPage,
 } from 'pages/groups'
-import { TasksPage, TaskPage, TaskCreatePage, TaskEditPage } from 'pages/tasks'
+import {
+  TasksPage,
+  TaskPage,
+  TaskCreatePage,
+  TaskEditPage,
+  TaskFileCreatePage,
+} from 'pages/tasks'
 import ProfilePage from 'pages/profile_page'
 import AppLayout from 'layouts/app_layout'
 import { SolutionPage } from 'pages/solution_page'
@@ -73,6 +79,11 @@ export const AdminRoutes: RouteConfig[] = [
     path: paths.taskCreatePath,
     component: TaskCreatePage,
     breadcrumb: 'Создать',
+  },
+  {
+    path: paths.tasksFileCreatePath,
+    component: TaskFileCreatePage,
+    breadcrumb: 'Создать из файла',
   },
   { path: paths.taskPath(':id'), exact: true, component: TaskPage },
   {

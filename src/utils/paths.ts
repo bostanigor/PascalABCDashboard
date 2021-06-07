@@ -21,6 +21,7 @@ export const groupEditPath = (id: string) => `${groupsPath}/${id}/edit`
 export const tasksPath = `${homePath}tasks`
 export const taskPath = (id: string) => `${tasksPath}/${id}`
 export const taskCreatePath = `${tasksPath}/create`
+export const tasksFileCreatePath = `${tasksPath}/create_by_file`
 export const taskEditPath = (id: string) => `${tasksPath}/${id}/edit`
 
 // Solutions

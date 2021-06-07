@@ -13,7 +13,7 @@ export const CardEntry: FC<CardEntryProps> = ({ title, children }) => {
       </Col>
       <Col flex="0.1" />
       <Col flex="4">
-        <div style={{ fontWeight: 'bold', fontSize: 'large' }}>{children}</div>
+        <div style={{ fontSize: 'large' }}>{children}</div>
       </Col>
     </Row>
   )
