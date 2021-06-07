@@ -23,27 +23,33 @@ export const GroupForm: React.FC<GroupFormProps> = ({
   }
 
   return (
-    <InputForm name={name} onFinish={onFinish} initialValues={initialData}>
-      <Item
-        name="name"
-        label="Название"
-        rules={[{ required: true, message: 'Выберите, пожалуйста, название' }]}
-      >
-        <Input />
-      </Item>
-      <Item name="file" label="Файл">
-        <Upload
-          name="file"
-          beforeUpload={beforeUpload}
-          maxCount={1}
-          multiple
-          showUploadList={{
-            showRemoveIcon: true,
-          }}
+    <>
+      <h1>Формат файла следующий:</h1>
+      <p>{`"<Имя Студента>" "<Фамилия студента>" <Имя пользователя (опционально)>`}</p>
+      <InputForm name={name} onFinish={onFinish} initialValues={initialData}>
+        <Item
+          name="name"
+          label="Название"
+          rules={[
+            { required: true, message: 'Выберите, пожалуйста, название' },
+          ]}
         >
-          <Button icon={<UploadOutlined />}>Загрузить файл группы</Button>
-        </Upload>
-      </Item>
-    </InputForm>
+          <Input />
+        </Item>
+        <Item name="file" label="Файл">
+          <Upload
+            name="file"
+            beforeUpload={beforeUpload}
+            maxCount={1}
+            multiple
+            showUploadList={{
+              showRemoveIcon: true,
+            }}
+          >
+            <Button icon={<UploadOutlined />}>Загрузить файл группы</Button>
+          </Upload>
+        </Item>
+      </InputForm>
+    </>
   )
 }

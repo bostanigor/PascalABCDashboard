@@ -53,6 +53,9 @@ export const TaskFileCreatePage = () => {
 
   return (
     <Card title={<CardHeader title={'Загрузить файл задач'} />}>
+      <h1>Формат файла следующий:</h1>
+      <p>{`"<Название задачи>" <Описание задачи до конца строки>`}</p>
+
       <InputForm name="tasks-create" onFinish={onFinish}>
         <Item name="file" label="Файл">
           <Upload
