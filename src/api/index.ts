@@ -88,12 +88,18 @@ export const updatePassword = (old_password: string, new_password: string) =>
     .then((res) => res.data as ApiResponse<FetchData>)
 
 export const fetchUser = () =>
-  instance.get('/auth').then((res) => {
-    if (res.status == 401) {
+  instance
+    .get('/auth')
+    .then((res) => {
+      // if (res.status == 401) {
+      //   store.dispatch('signOut')
+      // }
+      return res.data as ApiResponse<FetchData>
+    })
+    .catch((error) => {
       store.dispatch('signOut')
-    }
-    return res.data as ApiResponse<FetchData>
-  })
+      return Promise.reject(error)
+    })
 
 // Student requests
 export const getStudents = (

@@ -11,7 +11,7 @@ type State = {
 type Events = {
   signIn: { token: string }
   signOut: void
-  fetchUser: { data: FetchData | undefined }
+  setUser: { data: FetchData | undefined }
 }
 
 // Initial state, reducers and business logic are packed in independent modules
@@ -22,7 +22,7 @@ const baseStore: StoreonModule<State, Events> = (store) => {
     setToken(token ?? null)
     if (token) {
       fetchUser().then(({ data }) => {
-        if (data) store.dispatch('fetchUser', { data })
+        if (data) store.dispatch('setUser', { data })
       })
       return { isSignedIn: true, userData: null, isLoading: true }
     }
@@ -32,7 +32,7 @@ const baseStore: StoreonModule<State, Events> = (store) => {
   store.on('signIn', (_, { token }) => {
     localStorage.setItem('token', token)
     setToken(token)
-    fetchUser().then(({ data }) => store.dispatch('fetchUser', { data }))
+    fetchUser().then(({ data }) => store.dispatch('setUser', { data }))
     return { isSignedIn: true, isLoading: true }
   })
 
@@ -42,7 +42,7 @@ const baseStore: StoreonModule<State, Events> = (store) => {
     return { isSignedIn: false, userData: null, isLoading: false }
   })
 
-  store.on('fetchUser', (_, { data }) => {
+  store.on('setUser', (_, { data }) => {
     return { isSignedIn: true, userData: data, isLoading: false }
   })
 }
