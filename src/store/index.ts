@@ -21,7 +21,9 @@ const baseStore: StoreonModule<State, Events> = (store) => {
     const token = localStorage.getItem('token')
     setToken(token ?? null)
     if (token) {
-      fetchUser().then(({ data }) => store.dispatch('fetchUser', { data }))
+      fetchUser().then(({ data }) => {
+        if (data) store.dispatch('fetchUser', { data })
+      })
       return { isSignedIn: true, userData: null, isLoading: true }
     }
     return { isSignedIn: false, userData: null, isLoading: false }

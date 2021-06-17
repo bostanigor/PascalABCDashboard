@@ -89,6 +89,9 @@ export const updatePassword = (old_password: string, new_password: string) =>
 
 export const fetchUser = () =>
   instance.get('/auth').then((res) => {
+    if (res.status == 401) {
+      store.dispatch('signOut')
+    }
     return res.data as ApiResponse<FetchData>
   })
 

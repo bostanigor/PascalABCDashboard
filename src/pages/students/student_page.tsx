@@ -80,6 +80,9 @@ export const StudentPage = () => {
               {data.data.group.name}
             </Link>
           </CardEntry>
+          <CardEntry title="Решено задач" key={6}>
+            {data.data.completed_tasks_count}
+          </CardEntry>
           <DataTable
             columns={solution_columns}
             getMethod={getSolutions}

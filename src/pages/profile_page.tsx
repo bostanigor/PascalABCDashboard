@@ -67,6 +67,9 @@ const ProfilePage = ({ route }: RouteConfigComponentProps) => {
           <CardEntry title="Группа" key={5}>
             {userData.group.name}
           </CardEntry>
+          <CardEntry title="Решено задач" key={6}>
+            {userData.completed_tasks_count}
+          </CardEntry>
           <Link to={paths.updatePasswordPath}>Поменять пароль</Link>
           <DataTable
             columns={solution_columns}

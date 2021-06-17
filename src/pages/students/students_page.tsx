@@ -46,6 +46,11 @@ export const columns = [
     ),
   },
   {
+    title: <h1> Решено задач </h1>,
+    dataIndex: 'completed_tasks_count',
+    key: 'completed_tasks_count',
+  },
+  {
     title: 'Действия',
     key: 'action',
     render: (text: string, record: Student) => (

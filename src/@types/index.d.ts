@@ -3,6 +3,7 @@ type Student = {
   first_name: string
   last_name: string
   username: string
+  completed_tasks_count: number
   group: Group
 }
 

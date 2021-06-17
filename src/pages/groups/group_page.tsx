@@ -9,6 +9,17 @@ import { DataTable } from 'components/tables'
 import { columns as student_columns } from 'pages/students/students_page'
 import { useStore } from 'store'
 
+const filters = [
+  {
+    label: 'Имя',
+    key: 'first_name',
+  },
+  {
+    label: 'Фамилия',
+    key: 'last_name',
+  },
+]
+
 export const GroupPage = () => {
   const history = useHistory()
 
@@ -42,6 +53,7 @@ export const GroupPage = () => {
           <DataTable
             columns={student_columns}
             getMethod={getStudents}
+            filters={filters}
             getParams={{ group_id: data.data.id }}
           />
         </Card>
